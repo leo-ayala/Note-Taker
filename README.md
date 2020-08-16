@@ -6,20 +6,17 @@
   </a>
 </p>
 
-> fat description
+> This project showcases how Express.js can allow for multiple cards and be added and taken away from a site using a server. Through GET and POST requests, the site can hold all the note cards one creates as long as the server is still on.
+
+## Website
+
+https://morning-dusk-24184.herokuapp.com/
 
 
-## Usage
+## Screenshot
 
-```sh
-node server
-```
+<img src="./Screen-shot.png" alt="note-taker" style="max-width:100%;">
 
-## Run tests
-
-```sh
-npm run test
-```
 
 ## Author
 
