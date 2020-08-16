@@ -1,16 +1,16 @@
 const path = require('path');
 const router = require('express').Router();
-const notes = require('../db.json');
+let notes = require('../db.json');
 const fs = require('fs');
 
 router.post('/notes', (req, res) => {
-    console.log(req.body)
-    res.json(req.body);
-    notes.push(req.body)
-    fs.writeFileSync(
-      path.json(__dirname, '../db.json'),
-      JSON.stringify(notes, null, 2)
-    )
+  req.body.id = notes.length.toString();
+  notes.push(req.body)
+  fs.writeFileSync(
+    path.join(__dirname, '../db.json'),
+    JSON.stringify(notes, null, 2)
+  )
+  res.json(req.body);
 });
 
 router.get('/notes', (req, res) => {
@@ -18,5 +18,23 @@ router.get('/notes', (req, res) => {
 })
 
 
+function findById(id, notes) {
+  const newArray = notes.filter(note => note.id !== id);
+  return newArray;
+}
 
-  module.exports = router;
+router.delete('/notes/:id', (req, res) => {
+  const NewNotes = findById(req.params.id, notes);
+  notes = NewNotes;
+  for (i = 0; i < notes.length; i++) {
+    notes[i].id = i.toString();
+  }
+  fs.writeFileSync(
+    path.join(__dirname, '../db.json'),
+    JSON.stringify(notes, null, 2)
+  )
+  res.json(notes)
+})
+
+
+module.exports = router;

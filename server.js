@@ -12,7 +12,7 @@ app.use('/api', apiRoutes);
 
 
 
-  // Listener~~
-  app.listen(PORT, () => {
+// Listener~~
+app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
-  });
+});
